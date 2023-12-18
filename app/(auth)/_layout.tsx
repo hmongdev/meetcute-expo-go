@@ -25,7 +25,10 @@ const TabsPage = () => {
 	const { isSignedIn } = useAuth();
 
 	return (
-		<Tabs>
+		<Tabs
+			screenOptions={{
+				headerShown: false,
+			}}>
 			<Tabs.Screen
 				name="home"
 				options={{
@@ -52,7 +55,7 @@ const TabsPage = () => {
 							color={color}
 						/>
 					),
-					tabBarLabel: 'My Profile',
+					tabBarLabel: 'Profile',
 					headerRight: () => <LogoutButton />,
 				}}
 				redirect={!isSignedIn}
