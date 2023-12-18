@@ -1,17 +1,23 @@
-import { useUser } from '@clerk/clerk-expo';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 const Home = () => {
-	const { user } = useUser();
-
 	return (
-		<View className="flex h-full justify-center items-center">
-			<Text className="text-xl">
-				Welcome, {user?.emailAddresses[0].emailAddress}
-				🎉
-			</Text>
-		</View>
+		<SafeAreaView className="flex h-full justify-center items-center">
+			<ScrollView>
+				<LottieView
+					source={require('../../assets/animations/heart.json')}
+					loop={true}
+					autoPlay
+					style={{
+						width: 90,
+						height: 90,
+						alignSelf: 'center',
+					}}
+				/>
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 

@@ -3,8 +3,8 @@ import { Stack, useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
 	Button,
+	KeyboardAvoidingView,
 	Pressable,
-	SafeAreaView,
 	Text,
 	TextInput,
 	View,
@@ -82,7 +82,9 @@ const RegisterModal = () => {
 	};
 
 	return (
-		<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
+		<KeyboardAvoidingView
+			behavior="padding"
+			className="h-full flex justify-center items-center bg-stone-800">
 			<Stack.Screen
 				options={{
 					headerBackVisible: !verifying,
@@ -148,7 +150,7 @@ const RegisterModal = () => {
 					handleVerification={handleVerification}
 				/>
 			)}
-		</SafeAreaView>
+		</KeyboardAvoidingView>
 	);
 };
 
