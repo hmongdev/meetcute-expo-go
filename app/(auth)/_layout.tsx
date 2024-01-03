@@ -1,62 +1,70 @@
 import { useAuth } from '@clerk/clerk-expo';
-import { Foundation, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
 
-export const LogoutButton = () => {
-	const { signOut } = useAuth();
-
-	const doLogout = () => {
-		signOut();
-	};
-
-	return (
-		<Pressable onPress={doLogout} style={{ marginRight: 10 }}>
-			<Ionicons
-				name="log-out-outline"
-				size={30}
-				color={'#fff'}
-			/>
-		</Pressable>
-	);
+// types
+type TabBarIconProps = {
+	color: string;
+	size: number;
+	focused: string;
 };
 
-const TabsPage = () => {
+type IonIconName = React.ComponentProps<typeof Ionicons>['name'];
+
+type TabName = 'Home' | 'Search' | 'Create' | 'Chat' | 'Profile';
+
+const BottomTabsNavigator = () => {
 	const { isSignedIn } = useAuth();
 
 	return (
 		<Tabs
-			screenOptions={{
-				headerShown: false,
-			}}>
+			screenOptions={() => ({
+				tabBarIcon: ({
+					color,
+					size,
+					focused,
+				}: TabBarIconProps) => {
+					// dictionary
+					const iconMap: Record<
+						TabName,
+						Record<'u' | 'f', IonIconName>
+					> = {
+						Home: {
+							u: 'home-outline',
+							f: 'home-sharp',
+						},
+						Search: {
+							u: 'search-outline',
+							f: 'search',
+						},
+						Create: {
+							u: 'add-circle-outline',
+							f: 'add-circle',
+						},
+						Chat: {
+							u: 'chatbubbles-outline',
+							f: 'chatbubbles',
+						},
+						Profile: {
+							u: 'person-outline',
+							f: 'person',
+						},
+					};
+				},
+			})}>
 			<Tabs.Screen
-				name="home"
 				options={{
-					headerTitle: 'Home',
-					tabBarIcon: ({ color, size }) => (
-						<Foundation
-							name="home"
-							size={size}
-							color={color}
-						/>
-					),
-					tabBarLabel: 'Home',
-				}}
-				redirect={!isSignedIn}
-			/>
-			<Tabs.Screen
-				name="profile"
-				options={{
-					headerTitle: 'Profile',
-					tabBarIcon: ({ color, size }) => (
+					tabBarIcon: ({
+						color,
+						size,
+						focused,
+					}) => (
 						<Ionicons
-							name="person-outline"
+							name={focused}
 							size={size}
 							color={color}
 						/>
 					),
-					tabBarLabel: 'Profile',
-					headerRight: () => <LogoutButton />,
 				}}
 				redirect={!isSignedIn}
 			/>
@@ -64,4 +72,4 @@ const TabsPage = () => {
 	);
 };
 
-export default TabsPage;
+export default BottomTabsNavigator;

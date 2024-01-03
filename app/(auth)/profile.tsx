@@ -1,6 +1,6 @@
 import { useUser } from '@clerk/clerk-expo';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, SafeAreaView, Text, TextInput } from 'react-native';
 
 const profile = () => {
 	const { user } = useUser();
@@ -27,8 +27,8 @@ const profile = () => {
 	};
 
 	return (
-		<View style={styles.container}>
-			<Text style={{ textAlign: 'center' }}>
+		<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
+			<Text className="text-lg text-center h-10 text-white">
 				Good morning {user?.firstName} {user?.lastName}!
 			</Text>
 
@@ -36,37 +36,21 @@ const profile = () => {
 				placeholder="First Name"
 				value={firstName}
 				onChangeText={setFirstName}
-				style={styles.inputField}
+				className="text-lg text-center h-10 text-white"
 			/>
 			<TextInput
 				placeholder="Last Name"
 				value={lastName}
 				onChangeText={setLastName}
-				style={styles.inputField}
+				className="text-lg text-center h-10 text-white"
 			/>
 			<Button
 				onPress={onSaveUser}
 				title="Update account"
-				color={'#6c47ff'}></Button>
-		</View>
+				color={'#6c47ff'}
+			/>
+		</SafeAreaView>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		padding: 40,
-	},
-	inputField: {
-		marginVertical: 4,
-		height: 50,
-		borderWidth: 1,
-		borderColor: '#6c47ff',
-		borderRadius: 4,
-		padding: 10,
-		backgroundColor: '#fff',
-	},
-});
 
 export default profile;
