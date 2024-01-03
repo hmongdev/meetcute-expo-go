@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 
-const Home = () => {
+const Chat = () => {
 	return (
-		<SafeAreaView className="flex h-full justify-center items-center">
-			<Text>Chat Tab</Text>
+		<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
+			<Text>Chat Test</Text>
 		</SafeAreaView>
 	);
 };
 
-export default Home;
+export default Chat;
