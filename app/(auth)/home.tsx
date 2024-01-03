@@ -7,7 +7,7 @@ const Home = () => {
 	const animationRef = React.useRef<Lottie>(null);
 
 	return (
-		<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
+		<SafeAreaView className="h-full flex justify-center items-center">
 			<ScrollView
 				contentContainerStyle={{
 					// backgroundColor: 'black',

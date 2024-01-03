@@ -20,6 +20,7 @@ const BottomTabs = () => {
 			screenOptions={{
 				headerShown: false,
 				tabBarActiveBackgroundColor: 'black',
+				tabBarActiveTintColor: 'white',
 				tabBarInactiveBackgroundColor: 'black',
 				tabBarShowLabel: false,
 			}}>

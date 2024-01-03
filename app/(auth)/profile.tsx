@@ -27,7 +27,7 @@ const profile = () => {
 	};
 
 	return (
-		<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
+		<SafeAreaView className="h-full flex justify-center items-center">
 			<Text className="text-lg text-center h-10 text-white">
 				Good morning {user?.firstName} {user?.lastName}!
 			</Text>
