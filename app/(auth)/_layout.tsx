@@ -1,75 +1,150 @@
-import { useAuth } from '@clerk/clerk-expo';
-import { Ionicons } from '@expo/vector-icons';
+// icons
+import { Foundation, Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
 // types
-type TabBarIconProps = {
-	color: string;
-	size: number;
-	focused: string;
-};
+// interface TabBarIconProps {
+// 	focused: boolean;
+// 	iconName: string;
+// 	size: number;
+// 	color: 'string';
+// }
 
-type IonIconName = React.ComponentProps<typeof Ionicons>['name'];
+//? TO DO:
+//? 1. Create a focus state that alters (size, icon)
+//? 2. Refactor code that renders only one Tabs.Screen
 
-type TabName = 'Home' | 'Search' | 'Create' | 'Chat' | 'Profile';
-
-const BottomTabsNavigator = () => {
-	const { isSignedIn } = useAuth();
-
+const BottomTabs = () => {
 	return (
 		<Tabs
-			screenOptions={() => ({
-				tabBarIcon: ({
-					color,
-					size,
-					focused,
-				}: TabBarIconProps) => {
-					// dictionary
-					const iconMap: Record<
-						TabName,
-						Record<'u' | 'f', IonIconName>
-					> = {
-						Home: {
-							u: 'home-outline',
-							f: 'home-sharp',
-						},
-						Search: {
-							u: 'search-outline',
-							f: 'search',
-						},
-						Create: {
-							u: 'add-circle-outline',
-							f: 'add-circle',
-						},
-						Chat: {
-							u: 'chatbubbles-outline',
-							f: 'chatbubbles',
-						},
-						Profile: {
-							u: 'person-outline',
-							f: 'person',
-						},
-					};
-				},
-			})}>
+			screenOptions={{
+				headerShown: false,
+				tabBarActiveBackgroundColor: 'black',
+				tabBarInactiveBackgroundColor: 'black',
+				tabBarShowLabel: false,
+			}}>
 			<Tabs.Screen
+				name="home"
 				options={{
-					tabBarIcon: ({
-						color,
-						size,
-						focused,
-					}) => (
-						<Ionicons
-							name={focused}
-							size={size}
-							color={color}
+					tabBarIcon: () => (
+						<Foundation
+							name="home"
+							size={30}
+							color="gray"
 						/>
 					),
 				}}
-				redirect={!isSignedIn}
+			/>
+			<Tabs.Screen
+				name="search"
+				options={{
+					tabBarIcon: () => (
+						<Ionicons
+							name="people-circle-outline"
+							size={30}
+							color="gray"
+						/>
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="post"
+				options={{
+					tabBarIcon: () => (
+						<Ionicons
+							name="add-circle-outline"
+							size={35}
+							color="gray"
+						/>
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="chat"
+				options={{
+					tabBarIcon: () => (
+						<Ionicons
+							name="ios-chatbubbles-outline"
+							size={30}
+							color="gray"
+						/>
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="profile"
+				options={{
+					tabBarIcon: () => (
+						<Ionicons
+							name="person"
+							size={30}
+							color="gray"
+						/>
+					),
+				}}
 			/>
 		</Tabs>
 	);
+	// return (
+	// 	<Tabs
+	// 		screenOptions={({ route }) => ({
+	// 			tabBarIcon: ({
+	// 				color,
+	// 				size,
+	// 				focused,
+	// 			}: TabBarIconProps) => {
+	// 				// type alias IconProps to extract 'name' from Ionicons component
+	// 				type IconProps = ComponentProps<
+	// 					typeof Ionicons
+	// 				>['name'];
+	// 				// variable iconName with type `IconProps` or `undefined`
+	// 				let iconName: IconProps;
+	// 				// iconMap dictionary, maps route names to icon names for focused states (f and u)
+	// 				const iconMap: Record<
+	// 					string,
+	// 					Record<'u' | 'f', IconProps>
+	// 				> = {
+	// 					Home: {
+	// 						u: 'home-outline',
+	// 						f: 'home',
+	// 					},
+	// 					Search: {
+	// 						u: 'search-outline',
+	// 						f: 'search',
+	// 					},
+	// 					Post: {
+	// 						u: 'add',
+	// 						f: 'add-circle',
+	// 					},
+	// 					Chat: {
+	// 						u: 'chatbubbles-outline',
+	// 						f: 'chatbubbles-sharp',
+	// 					},
+	// 					Profile: {
+	// 						u: 'person-circle-outline',
+	// 						f: 'person-circle',
+	// 					},
+	// 				};
+	// 				// assigning route name to use in iconName
+	// 				const routeName = route.name as string;
+
+	// 				// assigning iconName based on route and focus state
+	// 				iconName = focused
+	// 					? iconMap[routeName]?.f
+	// 					: iconMap[routeName]?.u;
+
+	// 				return (
+	// 					<Ionicons
+	// 						focused={focused}
+	// 						name={iconName}
+	// 						size={size}
+	// 						color={color}
+	// 					/>
+	// 				);
+	// 			},
+	// 		})}
+	// 	/>
+	// );
 };
 
-export default BottomTabsNavigator;
+export default BottomTabs;

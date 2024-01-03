@@ -1,13 +1,13 @@
 import LottieView from 'lottie-react-native';
 import * as React from 'react';
-import { Platform, SafeAreaView, ScrollView } from 'react-native';
+import { Platform, SafeAreaView, ScrollView, Text } from 'react-native';
 import { RefreshControl } from 'react-native-gesture-handler';
 
 const Home = () => {
 	const animationRef = React.useRef<Lottie>(null);
 
 	return (
-		<SafeAreaView className="flex h-full justify-center items-center">
+		<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
 			<ScrollView
 				contentContainerStyle={{
 					// backgroundColor: 'black',
@@ -36,6 +36,7 @@ const Home = () => {
 						alignSelf: 'center',
 					}}
 				/>
+				<Text className="text-center">Home Tab</Text>
 			</ScrollView>
 		</SafeAreaView>
 	);
