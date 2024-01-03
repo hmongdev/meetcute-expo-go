@@ -1,10 +1,10 @@
 import LottieView from 'lottie-react-native';
-import * as React from 'react';
+import React, { useRef } from 'react';
 import { Platform, SafeAreaView, ScrollView, Text } from 'react-native';
 import { RefreshControl } from 'react-native-gesture-handler';
 
 const Home = () => {
-	const animationRef = React.useRef<Lottie>(null);
+	const animationRef = useRef<LottieView>(null);
 
 	return (
 		<SafeAreaView className="h-full flex justify-center items-center">
@@ -12,15 +12,20 @@ const Home = () => {
 				contentContainerStyle={{
 					// backgroundColor: 'black',
 					paddingHorizontal: 10,
-					paddingTop: Platform.select({
-						android: 30,
-					}),
+					paddingTop:
+						Platform.OS === 'android'
+							? 30
+							: 0,
 				}}
 				refreshControl={
 					<RefreshControl
 						refreshing={false}
 						onRefresh={() => {
-							animationRef.current.play();
+							if (
+								animationRef.current
+							) {
+								animationRef.current.play();
+							}
 						}}
 						tintColor={'transparent'}
 					/>
