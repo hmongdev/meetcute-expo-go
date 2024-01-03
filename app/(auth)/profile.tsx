@@ -28,7 +28,7 @@ const profile = () => {
 
 	return (
 		<SafeAreaView className="h-full flex justify-center items-center">
-			<Text className="text-lg text-center h-10 text-white">
+			<Text className="text-lg text-center h-10">
 				Good morning {user?.firstName} {user?.lastName}!
 			</Text>
 
@@ -36,13 +36,13 @@ const profile = () => {
 				placeholder="First Name"
 				value={firstName}
 				onChangeText={setFirstName}
-				className="text-lg text-center h-10 text-white"
+				className="text-lg text-center h-10"
 			/>
 			<TextInput
 				placeholder="Last Name"
 				value={lastName}
 				onChangeText={setLastName}
-				className="text-lg text-center h-10 text-white"
+				className="text-lg text-center h-10"
 			/>
 			<Button
 				onPress={onSaveUser}
