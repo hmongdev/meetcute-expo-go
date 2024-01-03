@@ -1,17 +1,43 @@
-import { useUser } from '@clerk/clerk-expo';
-import React from 'react';
-import { Text, View } from 'react-native';
+import LottieView from 'lottie-react-native';
+import * as React from 'react';
+import { Platform, SafeAreaView, ScrollView } from 'react-native';
+import { RefreshControl } from 'react-native-gesture-handler';
 
 const Home = () => {
-	const { user } = useUser();
+	const animationRef = React.useRef<Lottie>(null);
 
 	return (
-		<View className="flex h-full justify-center items-center">
-			<Text className="text-xl">
-				Welcome, {user?.emailAddresses[0].emailAddress}
-				🎉
-			</Text>
-		</View>
+		<SafeAreaView className="flex h-full justify-center items-center">
+			<ScrollView
+				contentContainerStyle={{
+					// backgroundColor: 'black',
+					paddingHorizontal: 10,
+					paddingTop: Platform.select({
+						android: 30,
+					}),
+				}}
+				refreshControl={
+					<RefreshControl
+						refreshing={false}
+						onRefresh={() => {
+							animationRef.current.play();
+						}}
+						tintColor={'transparent'}
+					/>
+				}>
+				<LottieView
+					ref={animationRef}
+					source={require('../../assets/animations/heart.json')}
+					loop={false}
+					autoPlay
+					style={{
+						width: 90,
+						height: 90,
+						alignSelf: 'center',
+					}}
+				/>
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 

@@ -2,7 +2,13 @@ import { useSignIn } from '@clerk/clerk-expo';
 import { EmailCodeFactor, SignInFirstFactor } from '@clerk/types';
 import { Stack, useNavigation, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Button, Pressable, SafeAreaView, TextInput } from 'react-native';
+import {
+	Button,
+	KeyboardAvoidingView,
+	Pressable,
+	SafeAreaView,
+	TextInput,
+} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Verification from './verification';
 
@@ -21,6 +27,8 @@ const LoginModal = () => {
 	const handleRouter = () => {
 		router.replace('/register');
 	};
+
+	// authenticate login
 	const handleLogIn = async () => {
 		// if Clerk and useSignIn() are NOT loaded, exit immediately
 		if (!isLoaded && !signIn) return null;
@@ -67,7 +75,7 @@ const LoginModal = () => {
 		}
 	};
 
-	// Verify the email address
+	// verify the email address
 	const handleVerification = async () => {
 		// if Clerk or useSignUp hook is not loaded, exit immediately
 		if (!isLoaded && !signIn) return null;
@@ -98,55 +106,63 @@ const LoginModal = () => {
 	};
 
 	return (
-		<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
-			<Stack.Screen
-				options={{
-					headerBackVisible: !verifying,
-				}}
-			/>
-			<Spinner visible={loading} />
+		<KeyboardAvoidingView behavior="padding">
+			<SafeAreaView className="h-full flex justify-center items-center bg-stone-800">
+				<Stack.Screen
+					options={{
+						headerBackVisible: !verifying,
+					}}
+				/>
+				<Spinner visible={loading} />
 
-			{!verifying ? (
-				<SafeAreaView className="w-full flex justify-center items-center">
-					<Pressable className="my-2 w-4/5 rounded-2xl p-[2%] bg-stone-700">
-						<TextInput
-							autoCapitalize="none"
-							placeholder="Email Address"
-							placeholderTextColor="white"
-							value={emailAddress}
-							onChangeText={
-								setEmailAddress
-							}
-							className="text-lg text-center h-10 text-white"
-						/>
-					</Pressable>
-					<Pressable className="my-2 w-4/5 rounded-full p-[2%] bg-stone-500">
-						<Button
-							onPress={handleLogIn}
-							title="Log In"
-							color="white"
-						/>
-					</Pressable>
-					{error && (
-						<Pressable className="my-2 w-4/5 rounded-full p-[2%] bg-sky-500">
+				{!verifying ? (
+					<SafeAreaView className="w-full flex justify-center items-center">
+						<Pressable className="my-2 w-4/5 rounded-2xl p-[2%] bg-stone-700">
+							<TextInput
+								autoCapitalize="none"
+								placeholder="Email Address"
+								placeholderTextColor="white"
+								value={
+									emailAddress
+								}
+								onChangeText={
+									setEmailAddress
+								}
+								className="text-lg text-center h-10 text-white"
+							/>
+						</Pressable>
+						<Pressable className="my-2 w-4/5 rounded-full p-[2%] bg-stone-500">
 							<Button
 								onPress={
-									handleRouter
+									handleLogIn
 								}
-								title="Create Account?"
+								title="Log In"
 								color="white"
 							/>
 						</Pressable>
-					)}
-				</SafeAreaView>
-			) : (
-				<Verification
-					code={code}
-					setCode={setCode}
-					handleVerification={handleVerification}
-				/>
-			)}
-		</SafeAreaView>
+						{error && (
+							<Pressable className="my-2 w-4/5 rounded-full p-[2%] bg-sky-500">
+								<Button
+									onPress={
+										handleRouter
+									}
+									title="Create Account?"
+									color="white"
+								/>
+							</Pressable>
+						)}
+					</SafeAreaView>
+				) : (
+					<Verification
+						code={code}
+						setCode={setCode}
+						handleVerification={
+							handleVerification
+						}
+					/>
+				)}
+			</SafeAreaView>
+		</KeyboardAvoidingView>
 	);
 };
 
