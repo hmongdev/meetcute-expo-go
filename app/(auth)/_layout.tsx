@@ -14,7 +14,7 @@ import { Tabs } from 'expo-router';
 //? 1. Create a focus state that alters (size, icon)
 //? 2. Refactor code that renders only one Tabs.Screen
 
-const BottomTabs = () => {
+const BottomTabs = ({ route }: any) => {
 	return (
 		<Tabs
 			screenOptions={{
@@ -30,7 +30,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Foundation
 							name="home"
-							size={27}
+							size={30}
 							color="gray"
 						/>
 					),
@@ -42,7 +42,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Ionicons
 							name="people-circle-outline"
-							size={27}
+							size={30}
 							color="gray"
 						/>
 					),
@@ -66,7 +66,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Ionicons
 							name="ios-chatbubbles-outline"
-							size={27}
+							size={30}
 							color="gray"
 						/>
 					),
@@ -78,7 +78,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Ionicons
 							name="person-outline"
-							size={27}
+							size={30}
 							color="gray"
 						/>
 					),
