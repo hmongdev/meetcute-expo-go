@@ -30,7 +30,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Foundation
 							name="home"
-							size={30}
+							size={27}
 							color="gray"
 						/>
 					),
@@ -42,7 +42,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Ionicons
 							name="people-circle-outline"
-							size={30}
+							size={27}
 							color="gray"
 						/>
 					),
@@ -54,7 +54,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Ionicons
 							name="add-circle-outline"
-							size={35}
+							size={40}
 							color="gray"
 						/>
 					),
@@ -66,7 +66,7 @@ const BottomTabs = () => {
 					tabBarIcon: () => (
 						<Ionicons
 							name="ios-chatbubbles-outline"
-							size={30}
+							size={27}
 							color="gray"
 						/>
 					),
@@ -77,8 +77,8 @@ const BottomTabs = () => {
 				options={{
 					tabBarIcon: () => (
 						<Ionicons
-							name="person"
-							size={30}
+							name="person-outline"
+							size={27}
 							color="gray"
 						/>
 					),
