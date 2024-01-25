@@ -29,7 +29,7 @@ const profile = () => {
 	return (
 		<SafeAreaView className="h-full flex justify-center items-center">
 			<Text className="text-lg text-center h-10">
-				Good morning {user?.firstName} {user?.lastName}!
+				{user?.firstName}
 			</Text>
 
 			<TextInput
