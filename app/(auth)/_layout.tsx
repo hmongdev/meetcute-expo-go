@@ -1,5 +1,5 @@
 // icons
-import { Foundation, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
 // types
@@ -28,8 +28,8 @@ const BottomTabs = ({ route }: any) => {
 				name="home"
 				options={{
 					tabBarIcon: () => (
-						<Foundation
-							name="home"
+						<Ionicons
+							name="home-outline"
 							size={30}
 							color="gray"
 						/>
@@ -65,7 +65,7 @@ const BottomTabs = ({ route }: any) => {
 				options={{
 					tabBarIcon: () => (
 						<Ionicons
-							name="ios-chatbubbles-outline"
+							name="chatbubbles-outline"
 							size={30}
 							color="gray"
 						/>
